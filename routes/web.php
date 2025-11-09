@@ -8,3 +8,15 @@ Route::get('/', function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/analyze', function () {
+    return view('analyze');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
