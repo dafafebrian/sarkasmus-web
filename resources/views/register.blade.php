@@ -34,7 +34,7 @@
                 <input type="email" name="email" class="form-control" required>
             </div>
             <div class="form-group">
-                <label>Passwrod</label>
+                <label>Password</label>
                 <input type="password" name="password" class="form-control" required>
             </div>
            
