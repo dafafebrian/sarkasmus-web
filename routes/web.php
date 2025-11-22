@@ -23,8 +23,10 @@ Route::get('/register', function () {
 })->name('register'); 
 
 
-// Pastikan baris ini ada di routes/web.php
-Route::post('/register', [App\Http\Controllers\RegisterController::class, 'store'])->name('register.store');
+Route::post('/register', function () {
+   
+    return redirect()->route('register')->with('info', 'Fitur Registrasi Ditangguhkan Sementara.');
+})->name('register.store');
 
 Route::get('/post', function () {
     return view('post');
