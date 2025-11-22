@@ -5,16 +5,7 @@
 
 @section('content')
 
-@if ($errors->any())
-    <div style="padding: 10px; margin-bottom: 20px; border: 1px solid red; background-color: #fdd;">
-        <p style="font-weight: bold; color: red;">Pendaftaran Gagal:</p>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 
 
 
@@ -23,8 +14,8 @@
     <div class="container mt-5">
         
         
-        <form action="/register" method="POST">
-            @csrf
+        <form action="/register" method="GET">
+            
             <div class="form-group">
                 <label>username</label>
                 <input type="text" name="nama" class="form-control" required>

@@ -23,10 +23,7 @@ Route::get('/register', function () {
 })->name('register'); 
 
 
-Route::post('/register', function () {
-   
-    return redirect()->route('register')->with('info', 'Fitur Registrasi Ditangguhkan Sementara.');
-})->name('register.store');
+
 
 Route::get('/post', function () {
     return view('post');
