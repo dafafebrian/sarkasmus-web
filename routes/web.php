@@ -28,3 +28,5 @@ Route::get('/register', function () {
 Route::get('/post', function () {
     return view('post');
 });
+
+Route::get('/feed', [PostController::class, 'feed']);
