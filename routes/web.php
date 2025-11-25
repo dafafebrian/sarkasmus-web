@@ -30,3 +30,7 @@ Route::get('/post', function () {
 });
 
 Route::get('/feed', [PostController::class, 'feed']);
+
+Route::get('/tentang', function () {
+    return view('about');
+});
