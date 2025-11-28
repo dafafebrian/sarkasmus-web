@@ -11,8 +11,8 @@
         <p>Platform posting meme anak unimus</p>
 
         <a href="{{ url('/post') }}" class="btn btn-primary mt-3">Mulai Sekarang</a><br>
-        <a href="{{ url('/login') }}" class="btn btn-primary mt-2">Login</a>
-        <a href="{{ url('/register') }}" class="btn btn-primary mt-2">Login Admin</a>
+        <a href="{{ url('/login') }}" class="btn btn-primary mt-2">Login Admin</a>
+        <a href="{{ url('/register') }}" class="btn btn-primary mt-2">Login</a>
     </div>
 
     <div style="height: 1500px;"></div>
