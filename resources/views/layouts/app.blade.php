@@ -7,6 +7,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="/css/admin.css">
+
 </head>
 
 <body>
@@ -24,7 +26,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/post') }}">Posting</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url('/analisis') }}">Analisis</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url('/analyze') }}">Analisis</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/tentang') }}">Tentang</a></li>
                 </ul>
             </div>
