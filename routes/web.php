@@ -43,3 +43,7 @@ Route::get('/admin/register', function () {
     return view('admin.register');
 });
 
+Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+
+// PROSES LOGIN ADMIN
+Route::post('/admin/login', [AdminAuthController::class, 'login']);
