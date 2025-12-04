@@ -26,7 +26,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/post') }}">Posting</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ url('/analyze') }}">Analisis</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url('/analyze') }}">Post Masuk</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ url('/tentang') }}">Tentang</a></li>
                 </ul>
             </div>
