@@ -391,7 +391,6 @@
                 </div>
                 <div class="nav-links">
                     <a href="#home">Beranda</a>
-                    <a href="#features">Fitur</a>
                     <a href="#meme">Meme Terbaru</a>
                     <a href="#about">Tentang</a>
                     <a href="#contact">Kontak</a>
@@ -412,34 +411,20 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <h2 class="section-title">Fitur Unggulan</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-upload feature-icon"></i>
-                    <h3>Unggah Meme</h3>
-                    <p>Bagikan kreasi meme-mu dengan mudah. Dukung format gambar dan GIF.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-fire feature-icon"></i>
-                    <h3>Trending Meme</h3>
-                    <p>Lihat meme terpopuler hari ini berdasarkan like dan komentar.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-tags feature-icon"></i>
-                    <h3>Kategori</h3>
-                    <p>Temukan meme berdasarkan kategori: akademik, organisasi, sosial, dll.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt feature-icon"></i>
-                    <h3>Moderasi Konten</h3>
-                    <p>Konten dijaga agar tetap sesuai norma kampus dan bebas SARA.</p>
-                </div>
+            <h2>Mulai Eksplorasi Dunia Sarkasmus Unimus!</h2>
+            <p>Jangan cuma jadi penonton, ceritakan semua pengalamanmu selama dikampus.</p>
+            
+            <div class="cta-buttons">
+                <a href="#meme" class="btn cta-btn">Lihat Meme Terpopuler</a>
+                <a href="#login" class="btn cta-btn">Upload Meme Pertamamu</a>
             </div>
         </div>
     </section>
+
 
     <!-- Login Section -->
     <section class="login-section" id="login">
@@ -461,27 +446,10 @@
                     <i class="fas fa-user-graduate" style="font-size: 40px; color: var(--accent); margin-bottom: 20px;"></i>
                     <h3>Login Mahasiswa</h3>
                     <p>Masuk untuk mengunggah meme, memberi like, dan berinteraksi.</p>
-                    <a href="#" class="btn btn-wide">Login dengan NIM</a>
+                    <a href="#" class="btn btn-wide">Login</a>
                     <a href="#" class="btn btn-outline btn-wide">Daftar Akun Baru</a>
-                    <p style="margin-top: 15px; font-size: 0.9rem;">Atau login dengan:</p>
-                    <a href="#" class="btn btn-wide" style="background-color: #DB4437; margin-top: 10px;">
-                        <i class="fab fa-google"></i> Google
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Mulai Eksplorasi Dunia Sarkasmum Unimus!</h2>
-            <p>Jangan cuma jadi penonton, jadilah bagian dari kreator konten kampus.</p>
-            
-            <div class="cta-buttons">
-                <a href="#meme" class="btn cta-btn">Lihat Meme Terpopuler</a>
-                <a href="#login" class="btn cta-btn">Bergabung Sekarang</a>
-                <a href="#upload" class="btn cta-btn">Upload Meme Pertamamu</a>
             </div>
         </div>
     </section>
@@ -491,7 +459,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Splikasi Sarkasmus</h3>
+                    <h3>Aplikasi Sarkasmus</h3>
                     <p>Platform komunitas meme untuk mahasiswa Universitas Muhammadiyah Semarang. Dibuat untuk menyebarkan kegembiraan dan kreativitas di lingkungan kampus.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-instagram"></i></a>
