@@ -87,6 +87,78 @@
             color: var(--primary);
         }
 
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-name {
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .btn-logout {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
+
+        .btn-primary-nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary-nav:hover {
+            background-color: #0c63e4;
+        }
+
+        .btn-outline-nav {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-outline-nav:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             padding: 80px 0 60px;
@@ -377,6 +449,26 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+
+            .nav-auth {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .user-menu {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-logout {
+                width: 100%;
+            }
+
+            .btn-primary-nav,
+            .btn-outline-nav {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -391,9 +483,20 @@
                 </div>
                 <div class="nav-links">
                     <a href="#home">Beranda</a>
-                    <a href="#meme">Meme Terbaru</a>
+                    <a href="{{ route('feed') }}">Meme Terbaru</a>
                     <a href="#about">Tentang</a>
                     <a href="#contact">Kontak</a>
+                </div>
+                <div class="nav-auth">
+                    @auth
+                        <div class="user-menu">
+                            <span class="user-name">{{ Auth::user()->name }}</span>
+                            <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                                @csrf
+                                <button type="submit" class="btn-logout">Logout</button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
             </nav>
         </div>
@@ -413,20 +516,25 @@
 
     
     <!-- CTA Section -->
+    @guest
     <section class="cta-section">
         <div class="container">
             <h2>Mulai Eksplorasi Dunia Sarkasmus Unimus!</h2>
             <p>Jangan cuma jadi penonton, ceritakan semua pengalamanmu selama dikampus.</p>
             
             <div class="cta-buttons">
-                <a href="#meme" class="btn cta-btn">Lihat Meme Terpopuler</a>
-                <a href="#login" class="btn cta-btn">Upload Meme Pertamamu</a>
+                <a href="{{ route('feed') }}" class="btn cta-btn">Lihat Meme Terpopuler</a>
+                <a href="{{ auth()->check() ? route('meme.create') : route('login') }}" class="btn cta-btn">Upload Meme Pertamamu</a>
             </div>
         </div>
     </section>
+    @endguest
 
 
-    <!-- Login Section -->
+    @yield('content')
+
+    <!-- Login Section - Hanya tampil saat guest -->
+    @guest
     <section class="login-section" id="login">
         <div class="container">
             <h2 class="section-title">Bergabung dengan Komunitas</h2>
@@ -438,7 +546,7 @@
                     <i class="fas fa-user-cog" style="font-size: 40px; color: var(--secondary); margin-bottom: 20px;"></i>
                     <h3>Login Admin</h3>
                     <p>Akses panel admin untuk memoderasi konten dan mengelola platform.</p>
-                    <a href="#" class="btn btn-secondary btn-wide">Login sebagai Admin</a>
+                    <a href="{{ route('admin.login') }}" class="btn btn-secondary btn-wide">Login sebagai Admin</a>
                 </div>
                 
                 <!-- User Login -->
@@ -446,13 +554,13 @@
                     <i class="fas fa-user-graduate" style="font-size: 40px; color: var(--accent); margin-bottom: 20px;"></i>
                     <h3>Login Mahasiswa</h3>
                     <p>Masuk untuk mengunggah meme, memberi like, dan berinteraksi.</p>
-                    <a href="#" class="btn btn-wide">Login</a>
-                    <a href="#" class="btn btn-outline btn-wide">Daftar Akun Baru</a>
-                    </a>
+                    <a href="{{ route('login') }}" class="btn btn-wide">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline btn-wide">Daftar Akun Baru</a>
                 </div>
             </div>
         </div>
     </section>
+    @endguest
 
     <!-- Footer -->
     <footer id="contact">
@@ -473,8 +581,8 @@
                     <h3>Tautan Cepat</h3>
                     <a href="#home">Beranda</a>
                     <a href="#features">Fitur</a>
-                    <a href="#meme">Meme Terbaru</a>
-                    <a href="#login">Login</a>
+                    <a href="{{ route('feed') }}">Meme Terbaru</a>
+                    <a href="{{ route('login') }}">Login</a>
                 </div>
                 
                 <div class="footer-section">
@@ -496,7 +604,6 @@
           
         </div>
     </footer>
-
     <script>
         // Smooth scroll untuk navigasi
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -511,16 +618,6 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                }
-            });
-        });
-
-        // Animasi tombol login
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    alert('Fitur ini akan segera hadir! Sedang dalam pengembangan.');
                 }
             });
         });
