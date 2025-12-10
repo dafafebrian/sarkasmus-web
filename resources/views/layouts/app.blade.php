@@ -493,10 +493,7 @@
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 Splikasi Sarkasmus - Platform Meme Anak Unimus. Seluruh hak cipta dilindungi.</p>
-                <p style="margin-top: 5px;">Dibuat dengan ❤️ untuk mahasiswa Unimus</p>
-            </div>
+          
         </div>
     </footer>
 
