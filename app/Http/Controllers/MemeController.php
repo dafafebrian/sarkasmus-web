@@ -12,7 +12,8 @@ class MemeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        // Allow anonymous posting; only protect like/comment with auth
+        $this->middleware('auth', ['only' => ['toggleLike', 'addComment', 'deleteComment', 'destroy']]);
     }
 
     public function index()
@@ -36,19 +37,29 @@ class MemeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'caption' => 'nullable|string|max:500',
+            'anonymous_name' => 'nullable|string|max:50',
         ]);
 
-        $imagePath = $request->file('image')->store('memes', 'public');
+        // At least caption or image is required
+        if (!$request->caption && !$request->file('image')) {
+            return back()->withErrors(['content' => 'Tulisan atau gambar harus diisi!']);
+        }
+
+        $imagePath = null;
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('memes', 'public');
+        }
 
         Meme::create([
-            'user_id' => Auth::id(),
+            'user_id' => Auth::check() ? Auth::id() : null,
             'image_path' => $imagePath,
             'caption' => $request->caption,
+            'anonymous_name' => $request->anonymous_name ?: 'Anonymous',
         ]);
 
-        return redirect('/feed')->with('success', 'Meme berhasil dibagikan!');
+        return redirect('/feed')->with('success', 'Postingan berhasil dibagikan!');
     }
 
     public function show(Meme $meme)

@@ -9,11 +9,11 @@ class Meme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'image_path', 'caption', 'likes_count', 'comments_count'];
+    protected $fillable = ['user_id', 'image_path', 'caption', 'anonymous_name', 'likes_count', 'comments_count'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
     public function comments()

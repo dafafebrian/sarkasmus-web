@@ -2,14 +2,18 @@
     <div style="padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center; gap: 10px;">
             <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                {{ substr($meme->user->name, 0, 1) }}
+                @php
+                    $displayName = $meme->anonymous_name ?? ($meme->user->name ?? 'Anonymous');
+                    $firstChar = substr($displayName, 0, 1);
+                @endphp
+                {{ $firstChar }}
             </div>
             <div>
-                <strong style="display: block;">{{ $meme->user->name }}</strong>
+                <strong style="display: block;">{{ $displayName }}</strong>
                 <small style="color: #999;">{{ $meme->created_at->diffForHumans() }}</small>
             </div>
         </div>
-        @if(optional(auth()->user())->id === $meme->user_id)
+        @if(optional(auth()->user())->id === $meme->user_id || !$meme->user_id)
             <form action="{{ route('meme.destroy', $meme) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
@@ -19,11 +23,13 @@
     </div>
 
     <div style="width: 100%; max-height: 600px; overflow: hidden; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-        @php
-            $imgSrc = $meme->image_path;
-            $isExternal = Str::startsWith($imgSrc, ['http://','https://']);
-        @endphp
-        <img src="{{ $isExternal ? $imgSrc : asset('storage/' . $imgSrc) }}" alt="Meme" style="max-width: 100%; max-height: 600px; object-fit: cover;">
+        @if($meme->image_path)
+            @php
+                $imgSrc = $meme->image_path;
+                $isExternal = Str::startsWith($imgSrc, ['http://','https://']);
+            @endphp
+            <img src="{{ $isExternal ? $imgSrc : asset('storage/' . $imgSrc) }}" alt="Meme" style="max-width: 100%; max-height: 600px; object-fit: cover;">
+        @endif
     </div>
 
     @if($meme->caption)

@@ -19,18 +19,17 @@
             <!-- Image Upload -->
             <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">
-                    <i class="fas fa-image"></i> Pilih Gambar Meme
+                    <i class="fas fa-image"></i> Pilih Gambar (Opsional)
                 </label>
                 <div id="dropzone" style="border: 2px dashed #ddd; border-radius: 8px; padding: 40px 20px; text-align: center; background: #f9f9f9; cursor: pointer; transition: all 0.3s;">
                     <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: #1a73e8; margin-bottom: 10px; display: block;"></i>
                     <p style="color: #666; margin: 0;">Drag & drop gambar atau klik untuk memilih</p>
-                    <small style="color: #999; display: block; margin-top: 5px;">Maksimal 5MB (JPEG, PNG, GIF, WebP)</small>
+                    <small style="color: #999; display: block; margin-top: 5px;">Maksimal 5MB (JPEG, PNG, GIF, WebP) — atau abaikan jika ingin post teks saja</small>
                     <input 
                         type="file" 
                         name="image" 
                         id="image-input" 
-                        accept="image/*" 
-                        required
+                        accept="image/*"
                         style="display: none;"
                     >
                 </div>
@@ -42,11 +41,34 @@
                 </div>
             </div>
 
+            <!-- Anonymous Name -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">
+                    <i class="fas fa-user"></i> Nama Pengguna (Opsional)
+                </label>
+                <input 
+                    type="text" 
+                    name="anonymous_name" 
+                    placeholder="Posting sebagai... (atau kosongkan untuk 'Anonymous')" 
+                    maxlength="50"
+                    style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;"
+                >
+                <small style="display: block; color: #999; margin-top: 5px;">Nama akan ditampilkan sebagai author postingan Anda</small>
+            </div>
+
             <!-- Caption -->
             <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">
-                    <i class="fas fa-pen"></i> Caption (Opsional)
+                    <i class="fas fa-pen"></i> Tulisan / Caption (Opsional)
                 </label>
+                <textarea 
+                    name="caption" 
+                    placeholder="Tulis tulisan atau caption yang lucu, relatable, atau informatif..." 
+                    style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 100px;"
+                    maxlength="500"
+                ></textarea>
+                <small style="display: block; color: #999; margin-top: 5px;">Maksimal 500 karakter — minimal ada tulisan atau gambar</small>
+            </div>
                 <textarea 
                     name="caption" 
                     placeholder="Tulis caption yang lucu..." 

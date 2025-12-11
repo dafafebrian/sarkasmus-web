@@ -524,7 +524,7 @@
             
             <div class="cta-buttons">
                 <a href="{{ route('feed') }}" class="btn cta-btn">Lihat meme Terpopuler</a>
-                <a href="{{ auth()->check() ? route('meme.create') : route('login') }}" class="btn cta-btn">Upload Feed Pertamamu</a>
+                <a href="{{ route('meme.create') }}" class="btn cta-btn">Upload Feed Pertamamu</a>
             </div>
         </div>
     </section>
@@ -547,13 +547,6 @@
                     <p>Akses panel admin untuk memoderasi konten dan mengelola platform.</p>
                     <a href="{{ route('admin.login') }}" class="btn btn-secondary btn-wide">Login sebagai Admin</a>
                 </div>
-                
-                <!-- User Login -->
-                <a href="{{ url('/post') }}" class="btn btn-primary btn-lg" 
-                    style="display: block; width: 100%; text-align: center; padding: 14px 0; font-size: 18px; border-radius: 8px;">
-                    Buat Postingan
-                </a>
-
             </div>
         </div>
     </section>
