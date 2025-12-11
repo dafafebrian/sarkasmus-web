@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Posting - Sarkasmus')
+@section('title', 'Posting - Sarkalogi')
 
 @section('content')
 <div class="card shadow-sm p-4">
-    <h2 class="mb-4 text-center">Buat Posting Sarkasme</h2>
+    <h2 class="mb-4 text-center">Buat Postingan</h2>
 
     <form action="{{ url('/post') }}" method="POST">
         @csrf

@@ -506,7 +506,7 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>Platform <span class="highlight">Feed</span> Anak <span class="highlight">Unimus</span></h1>
-            <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan sindiran sehat mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten yang relate dengan kehidupan kampus!</p>
+            <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan keluh kesah mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten yang relate dengan kehidupan kampus!</p>
             
             <div class="hero-image">
                 <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ilustrasi Komunitas Mahasiswa">
@@ -523,7 +523,7 @@
             <p>Jangan cuma jadi penonton, ceritakan semua pengalamanmu selama dikampus.</p>
             
             <div class="cta-buttons">
-                <a href="{{ route('feed') }}" class="btn cta-btn">Lihat meme Terpopuler</a>
+                <a href="{{ route('feed') }}" class="btn cta-btn">Lihat postingan Terpopuler</a>
                 <a href="{{ route('meme.create') }}" class="btn cta-btn">Upload Feed Pertamamu</a>
             </div>
         </div>

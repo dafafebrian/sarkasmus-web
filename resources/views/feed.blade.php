@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Feed - Sarkasmus')
+@section('title', 'Feed - Sarkalogi')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 
     <!-- Header -->
     <div class="header">
-        <span>SarkasMus</span>
+        <span>Sarkalogi</span>
         <i class="fas fa-bars menu-icon"></i>
     </div>
 

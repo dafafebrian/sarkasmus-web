@@ -5,7 +5,7 @@
     <div class="auth-box">
         <div class="auth-header">
             <h2>Login</h2>
-            <p>Masuk ke akun Sarkasmus Anda</p>
+            <p>Masuk ke akun Sarkalogi Anda</p>
         </div>
 
         @if ($errors->any())
