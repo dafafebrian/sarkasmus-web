@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarkasmus - Platform Meme Anak Unimus</title>
+    <title>Sarkalogi - Platform Keluh Kesah Anak Unimus</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -479,11 +479,11 @@
             <nav class="navbar">
                 <div class="logo">
                     <i class="fas fa-laugh-beam logo-icon"></i>
-                    <div class="logo-text">Sarkasmus</div>
+                    <div class="logo-text">Sarkalogi</div>
                 </div>
                 <div class="nav-links">
                     <a href="#home">Beranda</a>
-                    <a href="{{ route('feed') }}">Meme Terbaru</a>
+                    <a href="{{ route('feed') }}">Feed Terbaru</a>
                     <a href="#about">Tentang</a>
                     <a href="#contact">Kontak</a>
                 </div>
@@ -505,7 +505,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Platform <span class="highlight">Meme</span> Anak <span class="highlight">Unimus</span></h1>
+            <h1>Platform <span class="highlight">Feed</span> Anak <span class="highlight">Unimus</span></h1>
             <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan sindiran sehat mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten yang relate dengan kehidupan kampus!</p>
             
             <div class="hero-image">
@@ -519,12 +519,12 @@
     @guest
     <section class="cta-section">
         <div class="container">
-            <h2>Mulai Eksplorasi Dunia Sarkasmus Unimus!</h2>
+            <h2>Mulai Eksplorasi Dunia Sarkalogi!</h2>
             <p>Jangan cuma jadi penonton, ceritakan semua pengalamanmu selama dikampus.</p>
             
             <div class="cta-buttons">
-                <a href="{{ route('feed') }}" class="btn cta-btn">Lihat Meme Terpopuler</a>
-                <a href="{{ auth()->check() ? route('meme.create') : route('login') }}" class="btn cta-btn">Upload Meme Pertamamu</a>
+                <a href="{{ route('feed') }}" class="btn cta-btn">Lihat meme Terpopuler</a>
+                <a href="{{ auth()->check() ? route('meme.create') : route('login') }}" class="btn cta-btn">Upload Feed Pertamamu</a>
             </div>
         </div>
     </section>
@@ -538,7 +538,6 @@
     <section class="login-section" id="login">
         <div class="container">
             <h2 class="section-title">Bergabung dengan Komunitas</h2>
-            <p>Pilih jenis login sesuai kebutuhan Anda</p>
             
             <div class="login-options">
                 <!-- Admin Login -->
@@ -550,13 +549,11 @@
                 </div>
                 
                 <!-- User Login -->
-                <div class="login-card user">
-                    <i class="fas fa-user-graduate" style="font-size: 40px; color: var(--accent); margin-bottom: 20px;"></i>
-                    <h3>Login Mahasiswa</h3>
-                    <p>Masuk untuk mengunggah meme, memberi like, dan berinteraksi.</p>
-                    <a href="{{ route('login') }}" class="btn btn-wide">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-outline btn-wide">Daftar Akun Baru</a>
-                </div>
+                <a href="{{ url('/post') }}" class="btn btn-primary btn-lg" 
+                    style="display: block; width: 100%; text-align: center; padding: 14px 0; font-size: 18px; border-radius: 8px;">
+                    Buat Postingan
+                </a>
+
             </div>
         </div>
     </section>
@@ -567,8 +564,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Aplikasi Sarkasmus</h3>
-                    <p>Platform komunitas meme untuk mahasiswa Universitas Muhammadiyah Semarang. Dibuat untuk menyebarkan kegembiraan dan kreativitas di lingkungan kampus.</p>
+                    <h3>Aplikasi Sarkalogi</h3>
+                    <p>Platform komunitas humor dan keluh kesah untuk mahasiswa Universitas Muhammadiyah Semarang. Dibuat untuk menyebarkan kegembiraan dan kreativitas di lingkungan kampus.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -581,7 +578,7 @@
                     <h3>Tautan Cepat</h3>
                     <a href="#home">Beranda</a>
                     <a href="#features">Fitur</a>
-                    <a href="{{ route('feed') }}">Meme Terbaru</a>
+                    <a href="{{ route('feed') }}">Post Terbaru</a>
                     <a href="{{ route('login') }}">Login</a>
                 </div>
                 
@@ -595,8 +592,8 @@
                 
                 <div class="footer-section">
                     <h3>Kontak</h3>
-                    <p><i class="fas fa-university"></i> Universitas Muhammadiyah Semarang</p>
-                    <p><i class="fas fa-envelope"></i> sarkasmus@unimus.ac.id</p>
+                    <p><i class="fas fa-university"></i> universitas</p>
+                    <p><i class="fas fa-envelope"></i> sarkalogi@unimus.ac.id</p>
                     <p><i class="fas fa-phone"></i> (024) 1234-5678</p>
                 </div>
             </div>
