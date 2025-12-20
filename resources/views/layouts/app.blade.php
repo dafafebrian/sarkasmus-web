@@ -483,7 +483,7 @@
                 </div>
                 <div class="nav-links">
                     <a href="#home">Beranda</a>
-                    <a href="{{ route('feed') }}">Feed Terbaru</a>
+                    <a href="{{ route('feed') }}">Feed</a>
                     <a href="#about">Tentang</a>
                     <a href="#contact">Kontak</a>
                 </div>
@@ -491,6 +491,11 @@
                     @auth
                         <div class="user-menu">
                             <span class="user-name">{{ Auth::user()->name }}</span>
+                            @if(Auth::user()->role === 'admin')
+                                <a href="{{ route('admin.dashboard') }}" class="btn-outline-nav">Dashboard Admin</a>
+                            @else
+                                <a href="{{ route('profile.dashboard') }}" class="btn-outline-nav">Profil Saya</a>
+                            @endif
                             <form action="{{ route('logout') }}" method="POST" class="logout-form">
                                 @csrf
                                 <button type="submit" class="btn-logout">Logout</button>

@@ -19,6 +19,7 @@ class MemeController extends Controller
     public function index()
     {
         $memes = Meme::with(['user', 'comments.user', 'likes'])
+            ->where('status', 'approved')
             ->latest()
             ->paginate(10);
 
@@ -57,6 +58,7 @@ class MemeController extends Controller
             'image_path' => $imagePath,
             'caption' => $request->caption,
             'anonymous_name' => $request->anonymous_name ?: 'Anonymous',
+            'status' => 'pending',
         ]);
 
         return redirect('/feed')->with('success', 'Postingan berhasil dibagikan!');

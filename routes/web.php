@@ -1,11 +1,8 @@
+
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MemeController;
+use App\Http\Controllers\ProfileController;
 
 // === ROUTE HALAMAN UTAMA ===
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,12 +32,14 @@ Route::post('/meme', [MemeController::class, 'store'])->name('meme.store');
 Route::post('/meme/{meme}/like', [MemeController::class, 'toggleLike'])->name('meme.like');
 Route::post('/meme/{meme}/comment', [MemeController::class, 'addComment'])->name('meme.comment');
 
+
 Route::middleware('auth')->group(function () {
     Route::delete('/meme/{meme}', [MemeController::class, 'destroy'])->name('meme.destroy');
     Route::delete('/comment/{comment}', [MemeController::class, 'deleteComment'])->name('comment.destroy');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-// === AUTH ROUTES UNTUK USER BIASA ===
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -48,11 +47,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
-Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-});
-
-// === ADMIN AUTH ROUTES ===
 Route::prefix('admin')->middleware('guest')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
     Route::post('/login', [AdminAuthController::class, 'login']);
@@ -60,6 +54,9 @@ Route::prefix('admin')->middleware('guest')->group(function () {
     Route::post('/register', [AdminAuthController::class, 'register']);
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('admin');
+use App\Http\Controllers\AdminDashboardController;
+Route::middleware('admin')->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::post('/meme/{id}/approve', [AdminDashboardController::class, 'approve'])->name('admin.meme.approve');
+    Route::post('/meme/{id}/reject', [AdminDashboardController::class, 'reject'])->name('admin.meme.reject');
+});

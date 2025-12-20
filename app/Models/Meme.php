@@ -9,7 +9,7 @@ class Meme extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'image_path', 'caption', 'anonymous_name', 'likes_count', 'comments_count'];
+    protected $fillable = ['user_id', 'image_path', 'caption', 'anonymous_name', 'likes_count', 'comments_count', 'status'];
 
     public function user()
     {
