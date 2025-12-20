@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="max-width: 600px; margin: 40px auto;">
     <div style="background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <h2 style="margin-bottom: 20px; text-align: center;">Upload Meme Baru</h2>
+        <h2 style="margin-bottom: 20px; text-align: center;">Upload Postingan Baru</h2>
 
         @if ($errors->any())
             <div style="background: #f8d7da; color: #721c24; padding: 12px 16px; border-radius: 4px; margin-bottom: 20px;">
@@ -63,24 +63,17 @@
                 </label>
                 <textarea 
                     name="caption" 
-                    placeholder="Tulis tulisan atau caption yang lucu, relatable, atau informatif..." 
+                    placeholder="....." 
                     style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 100px;"
                     maxlength="500"
                 ></textarea>
                 <small style="display: block; color: #999; margin-top: 5px;">Maksimal 500 karakter — minimal ada tulisan atau gambar</small>
             </div>
-                <textarea 
-                    name="caption" 
-                    placeholder="Tulis caption yang lucu..." 
-                    style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; font-family: inherit; resize: vertical; min-height: 100px;"
-                    maxlength="500"
-                ></textarea>
-                <small style="display: block; color: #999; margin-top: 5px;">Maksimal 500 karakter</small>
-            </div>
+            
 
             <!-- Submit -->
             <button type="submit" style="width: 100%; padding: 12px; background: #1a73e8; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 16px; transition: background 0.3s;">
-                <i class="fas fa-share"></i> Bagikan Meme
+                <i class="fas fa-share"></i> Bagikan Postingan
             </button>
 
             <a href="{{ route('feed') }}" style="display: block; text-align: center; margin-top: 10px; color: #1a73e8; text-decoration: none;">Kembali ke Feed</a>

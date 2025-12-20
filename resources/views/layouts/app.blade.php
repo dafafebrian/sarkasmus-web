@@ -537,7 +537,6 @@
     @guest
     <section class="login-section" id="login">
         <div class="container">
-            <h2 class="section-title">Bergabung dengan Komunitas</h2>
             
             <div class="login-options">
                 <!-- Admin Login -->
@@ -586,7 +585,7 @@
                 <div class="footer-section">
                     <h3>Kontak</h3>
                     <p><i class="fas fa-university"></i> universitas</p>
-                    <p><i class="fas fa-envelope"></i> sarkalogi@unimus.ac.id</p>
+                    <p><i class="fas fa-envelope"></i> sarkalogi@gmail.com</p>
                     <p><i class="fas fa-phone"></i> (024) 1234-5678</p>
                 </div>
             </div>

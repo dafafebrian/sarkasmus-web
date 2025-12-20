@@ -4,7 +4,7 @@
 <div class="container" style="max-width: 600px; margin: 40px auto;">
     <!-- Create Post Button -->
     <a href="{{ route('meme.create') }}" class="btn btn-primary" style="margin-bottom: 30px; display: block; text-align: center; padding: 12px;">
-        <i class="fas fa-plus"></i> Upload Meme Baru
+        <i class="fas fa-plus"></i> Upload Postingan Baru
     </a>
 
     <!-- Posts Feed -->
@@ -14,9 +14,9 @@
         @empty
             <div style="text-align: center; padding: 50px 20px; background: white; border-radius: 8px;">
                 <i class="fas fa-inbox" style="font-size: 40px; color: #ddd; margin-bottom: 20px; display: block;"></i>
-                <h3>Belum ada meme</h3>
-                <p style="color: #999; margin-bottom: 20px;">Jadilah yang pertama berbagi meme lucu!</p>
-                <a href="{{ route('meme.create') }}" class="btn btn-primary">Upload Meme Sekarang</a>
+                <h3>Belum ada postingan</h3>
+                <p style="color: #999; margin-bottom: 20px;">Jadilah yang pertama!</p>
+                <a href="{{ route('meme.create') }}" class="btn btn-primary">Upload Postingan Sekarang</a>
             </div>
         @endforelse
     </div>

@@ -12,8 +12,8 @@ class MemeController extends Controller
 {
     public function __construct()
     {
-        // Allow anonymous posting; only protect like/comment with auth
-        $this->middleware('auth', ['only' => ['toggleLike', 'addComment', 'deleteComment', 'destroy']]);
+        // Allow anonymous posting; only protect destructive actions
+        $this->middleware('auth', ['only' => ['deleteComment', 'destroy']]);
     }
 
     public function index()
@@ -78,21 +78,38 @@ class MemeController extends Controller
         return back()->with('success', 'Meme berhasil dihapus!');
     }
 
-    public function toggleLike(Meme $meme)
+    public function toggleLike(Request $request, Meme $meme)
     {
-        $like = Like::where('meme_id', $meme->id)
-            ->where('user_id', Auth::id())
-            ->first();
+        // Toggle like. Support anonymous likes by storing null user_id.
+        $userId = Auth::check() ? Auth::id() : null;
 
+        if ($userId) {
+            $like = Like::where('meme_id', $meme->id)->where('user_id', $userId)->first();
+        } else {
+            // For anonymous, pick any like with null user_id (simple toggle)
+            $like = Like::where('meme_id', $meme->id)->whereNull('user_id')->first();
+        }
+
+        $liked = false;
         if ($like) {
             $like->delete();
             $meme->decrement('likes_count');
+            $liked = false;
         } else {
             Like::create([
                 'meme_id' => $meme->id,
-                'user_id' => Auth::id(),
+                'user_id' => $userId,
             ]);
             $meme->increment('likes_count');
+            $liked = true;
+        }
+
+        // Return JSON for AJAX clients
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'likes_count' => $meme->likes_count,
+                'liked' => $liked,
+            ]);
         }
 
         return back();
@@ -106,7 +123,7 @@ class MemeController extends Controller
 
         Comment::create([
             'meme_id' => $meme->id,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::check() ? Auth::id() : null,
             'content' => $request->get('content'),
         ]);
 

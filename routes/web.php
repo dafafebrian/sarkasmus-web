@@ -31,11 +31,12 @@ Route::get('/feed', [MemeController::class, 'index'])->name('feed');
 // === MEME ROUTES ===
 Route::get('/meme/create', [MemeController::class, 'create'])->name('meme.create');
 Route::post('/meme', [MemeController::class, 'store'])->name('meme.store');
+// Allow like and comment without auth (anonymous)
+Route::post('/meme/{meme}/like', [MemeController::class, 'toggleLike'])->name('meme.like');
+Route::post('/meme/{meme}/comment', [MemeController::class, 'addComment'])->name('meme.comment');
 
 Route::middleware('auth')->group(function () {
     Route::delete('/meme/{meme}', [MemeController::class, 'destroy'])->name('meme.destroy');
-    Route::post('/meme/{meme}/like', [MemeController::class, 'toggleLike'])->name('meme.like');
-    Route::post('/meme/{meme}/comment', [MemeController::class, 'addComment'])->name('meme.comment');
     Route::delete('/comment/{comment}', [MemeController::class, 'deleteComment'])->name('comment.destroy');
 });
 

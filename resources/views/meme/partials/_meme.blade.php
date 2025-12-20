@@ -44,7 +44,7 @@
     </div>
 
     <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; gap: 10px;">
-        <form action="{{ route('meme.like', $meme) }}" method="POST" style="flex: 1;">
+        <form class="like-form" data-meme-id="{{ $meme->id }}" action="{{ route('meme.like', $meme) }}" method="POST" style="flex: 1;">
             @csrf
             <button type="submit" style="width: 100%; padding: 10px; border: none; background: white; color: {{ $meme->likedBy(optional(auth()->user())->id) ? '#e74c3c' : '#999' }}; cursor: pointer; font-weight: 500; transition: all 0.3s;">
                 <i class="fas fa-heart"></i> {{ $meme->likedBy(optional(auth()->user())->id) ? 'Batal Suka' : 'Suka' }}
@@ -60,7 +60,7 @@
             <div style="margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div>
-                        <strong>{{ $comment->user->name }}</strong>
+                        <strong>{{ optional($comment->user)->name ?? 'Anonymous' }}</strong>
                         <small style="color: #999; display: block;">{{ $comment->created_at->diffForHumans() }}</small>
                     </div>
                     @if(optional(auth()->user())->id === $comment->user_id)
@@ -90,3 +90,64 @@
         </div>
     </div>
 </div>
+
+@once
+    <script>
+    if (!window.__likeFormHandlerAdded) {
+        window.__likeFormHandlerAdded = true;
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('form.like-form').forEach(function (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    var formData = new FormData(this);
+                    var action = this.action;
+                    var tokenInput = this.querySelector('input[name="_token"]');
+                    var token = tokenInput ? tokenInput.value : '';
+
+                    try {
+                        var res = await fetch(action, {
+                            method: 'POST',
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRF-TOKEN': token,
+                                'Accept': 'application/json'
+                            },
+                            body: formData,
+                            credentials: 'same-origin'
+                        });
+
+                        if (res.status === 401) {
+                            if (confirm('Anda harus login untuk menyukai postingan. Login sekarang?')) {
+                                window.location.href = '{{ route('login') }}';
+                            }
+                            return;
+                        }
+
+                        var data = await res.json();
+
+                        // update UI inside the meme card
+                        var card = this.closest('.meme-card');
+                        if (card) {
+                            // update likes count (first stat span)
+                            var statSpans = card.querySelectorAll('div[style*="font-size: 13px"] span');
+                            if (statSpans && statSpans.length > 0) {
+                                statSpans[0].textContent = ' ' + data.likes_count + ' Suka';
+                            }
+
+                            // update button text and color
+                            var btn = this.querySelector('button[type="submit"]');
+                            if (btn) {
+                                btn.style.color = data.liked ? '#e74c3c' : '#999';
+                                btn.innerHTML = (data.liked ? '<i class="fas fa-heart"></i> Batal Suka' : '<i class="fas fa-heart"></i> Suka');
+                            }
+                        }
+
+                    } catch (err) {
+                        console.error('Like request failed', err);
+                    }
+                });
+            });
+        });
+    }
+    </script>
+@endonce
