@@ -496,6 +496,8 @@
                                 <button type="submit" class="btn-logout">Logout</button>
                             </form>
                         </div>
+                    @else
+                        <a href="{{ route('login') }}" class="btn-primary-nav">Login</a>
                     @endauth
                 </div>
             </nav>
@@ -508,9 +510,7 @@
             <h1>Platform <span class="highlight">Feed</span> Anak <span class="highlight">Unimus</span></h1>
             <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan keluh kesah mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten yang relate dengan kehidupan kampus!</p>
             
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Ilustrasi Komunitas Mahasiswa">
-            </div>
+            <!-- Gambar hero dihapus sesuai permintaan -->
         </div>
     </section>
 
@@ -533,23 +533,7 @@
 
     @yield('content')
 
-    <!-- Login Section - Hanya tampil saat guest -->
-    @guest
-    <section class="login-section" id="login">
-        <div class="container">
-            
-            <div class="login-options">
-                <!-- Admin Login -->
-                <div class="login-card admin">
-                    <i class="fas fa-user-cog" style="font-size: 40px; color: var(--secondary); margin-bottom: 20px;"></i>
-                    <h3>Login Admin</h3>
-                    <p>Akses panel admin untuk memoderasi konten dan mengelola platform.</p>
-                    <a href="{{ route('admin.login') }}" class="btn btn-secondary btn-wide">Login sebagai Admin</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endguest
+    <!-- ...login-section dihapus sesuai permintaan... -->
 
     <!-- Footer -->
     <footer id="contact">

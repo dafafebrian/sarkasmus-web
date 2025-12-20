@@ -62,4 +62,4 @@ Route::prefix('admin')->middleware('guest')->group(function () {
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
-})->middleware('auth');
+})->middleware('admin');

@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="auth-container">
     <div class="auth-box">
         <div class="auth-header">
             <h2>Login</h2>
             <p>Masuk ke akun Sarkalogi Anda</p>
+        </div>
+
+        <div class="login-options" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 30px;">
+            <a href="{{ route('login') }}" class="btn btn-outline @if(request()->routeIs('login')) active @endif">Login Pengguna/Member</a>
+            <a href="{{ route('admin.login') }}" class="btn btn-outline @if(request()->routeIs('admin.login')) active @endif">Login Admin</a>
         </div>
 
         @if ($errors->any())
