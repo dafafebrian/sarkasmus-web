@@ -18,6 +18,7 @@
                 <th style="padding:8px;border:1px solid #ddd;">Dibuat</th>
             </tr>
         </thead>
+    
         <tbody>
             @forelse($memes as $meme)
                 <tr>

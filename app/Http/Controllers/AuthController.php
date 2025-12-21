@@ -56,23 +56,30 @@ class AuthController extends Controller
      * Handle user login
      */
     public function login(Request $request)
-    {
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required|string',
+    ]);
 
-        $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
-            return redirect('/')->with('success', 'Selamat datang kembali!');
+    if (Auth::attempt($credentials, $request->filled('remember'))) {
+        $request->session()->regenerate();
+
+        // LOGIKA REDIRECT:
+        // Jika admin ke dashboard admin, jika user biasa ke profile dashboard
+        if (Auth::user()->role === 'admin') {
+            return redirect()->route('admin.dashboard')->with('success', 'Halo Admin!');
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+        return redirect()->route('profile.dashboard')->with('success', 'Selamat datang kembali!');
     }
+
+    return back()->withErrors([
+        'email' => 'Email atau password salah.',
+    ])->onlyInput('email');
+}
 
     /**
      * Handle user logout
