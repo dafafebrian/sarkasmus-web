@@ -482,7 +482,7 @@
                     <div class="logo-text">Sarkalogi</div>
                 </div>
                 <div class="nav-links">
-                    <a href="#home">Beranda</a>
+                    <a href="{{ route('home') }}">Beranda</a>
                     <a href="{{ route('feed') }}">Feed</a>
                     <a href="#about">Tentang</a>
                     <a href="#contact">Kontak</a>
@@ -557,7 +557,7 @@
                 
                 <div class="footer-section">
                     <h3>Tautan Cepat</h3>
-                    <a href="#home">Beranda</a>
+                    <a href="{{ route('home') }}">Beranda</a>
                     <a href="#features">Fitur</a>
                     <a href="{{ route('feed') }}">Post Terbaru</a>
                     <a href="{{ route('login') }}">Login</a>
