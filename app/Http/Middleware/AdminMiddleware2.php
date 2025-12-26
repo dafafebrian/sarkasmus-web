@@ -9,11 +9,10 @@ class AdminMiddleware2 // Nama harus sama dengan nama file
 {
     public function handle(Request $request, Closure $next)
     {
-        // Cek apakah user sudah login DAN role = admin
-        if (!auth()->check() || auth()->user()->role !== 'admin') {
-            abort(403, 'Anda tidak punya akses sebagai admin.');
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return $next($request);
         }
 
-        return $next($request);
+        abort(403, 'Unauthorized action.');
     }
 }

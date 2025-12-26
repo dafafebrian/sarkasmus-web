@@ -69,7 +69,7 @@ Route::prefix('admin')->middleware('guest')->group(function () {
 });
 
 // === ADMIN DASHBOARD (MENGGUNAKAN MIDDLEWARE ADMIN) ===
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware(\App\Http\Middleware\AdminMiddleware2::class)->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::post('/meme/{id}/approve', [AdminDashboardController::class, 'approve'])->name('admin.meme.approve');
     Route::post('/meme/{id}/reject', [AdminDashboardController::class, 'reject'])->name('admin.meme.reject');

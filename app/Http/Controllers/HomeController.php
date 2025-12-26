@@ -4,15 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Meme; // Tambahkan ini agar bisa memanggil tabel Meme
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // HANYA ambil postingan yang sudah disetujui oleh admin
-        $memes = Meme::where('status', 'approved')->latest()->paginate(10);
+        $sort = $request->get('sort', 'new');
+
+        $query = Meme::with(['user', 'comments.user', 'likes'])
+            ->where('status', 'approved');
         
+        if ($sort === 'hot') {
+            $query->orderBy(DB::raw('likes_count + comments_count'), 'DESC');
+        } else {
+            $query->latest();
+        }
+
+        $memes = $query->paginate(10);
+        
+        if ($request->ajax()) {
+            return view('meme.partials.list', compact('memes'));
+        }
+
         // Kirim data memes ke view home
-        return view('home', compact('memes'));
+        return view('home', compact('memes', 'sort'));
     }
 }

@@ -53,8 +53,8 @@ class AdminAuthController extends Controller
             return back()->with('error', 'Anda bukan admin!');
         }
 
-        auth()->login($user);
+        auth()->guard('admin')->login($user);
 
-        return redirect('/')->with('success', 'Berhasil login sebagai admin!');
+        return redirect()->route('admin.dashboard')->with('success', 'Berhasil login sebagai admin!');
     }
 }
