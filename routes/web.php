@@ -14,7 +14,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // === HALAMAN TENTANG ===
-Route::get('/tentang', function () {
+Route::get('/about', function () {
     return view('about');
 })->name('tentang');
 

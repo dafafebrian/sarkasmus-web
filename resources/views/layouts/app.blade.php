@@ -513,7 +513,7 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>Platform <span class="highlight">Feed</span> Anak <span class="highlight">Unimus</span></h1>
-            <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan keluh kesah mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten yang relate dengan kehidupan kampus!</p>
+            <p class="subtitle">Tempat berkumpulnya kreativitas, humor, dan sindiran sehat mahasiswa Universitas Muhammadiyah Semarang. Unggah, bagikan, dan nikmati konten serta keluh kesah yang relate dengan kehidupan kampus!</p>
             
             <!-- Gambar hero dihapus sesuai permintaan -->
         </div>
