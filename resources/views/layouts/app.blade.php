@@ -60,6 +60,16 @@
         .logo-icon {
             color: var(--secondary);
             font-size: 28px;
+            display: inline-block;
+        }
+
+        /* SVG logo sizing when used */
+        .logo svg.logo-icon {
+            width: 36px;
+            height: 36px;
+            display: inline-block;
+            vertical-align: middle;
+            fill: var(--secondary);
         }
 
         .logo-text {
@@ -71,20 +81,45 @@
             color: transparent;
         }
 
+        /* Accessibility: visually hidden but available to screen readers */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 18px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--gray);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.18s, background 0.18s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+            background: rgba(26,115,232,0.06);
+        }
+
+        .nav-links a .nav-icon {
+            font-size: 22px;
+            color: currentColor;
         }
 
         .nav-auth {
@@ -176,6 +211,8 @@
             color: var(--secondary);
             font-weight: 800;
         }
+
+        /* (hero middle icon removed; using highlighted text instead) */
 
         .subtitle {
             font-size: 1.2rem;
@@ -478,14 +515,26 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <i class="fas fa-laugh-beam logo-icon"></i>
+                    <i class="fas fa-laugh-beam logo-icon" aria-hidden="true"></i>
                     <div class="logo-text">Sarkalogi</div>
                 </div>
                 <div class="nav-links">
-                    <a href="{{ route('home') }}">Beranda</a>
-                    <a href="{{ route('feed') }}">Feed</a>
-                    <a href="#about">Tentang</a>
-                    <a href="#contact">Kontak</a>
+                    <a href="{{ route('home') }}" title="Beranda">
+                        <i class="fas fa-home nav-icon" aria-hidden="true"></i>
+                        <span class="sr-only">Beranda</span>
+                    </a>
+                    <a href="{{ route('feed') }}" title="Feed">
+                        <i class="fas fa-newspaper nav-icon" aria-hidden="true"></i>
+                        <span class="sr-only">Feed</span>
+                    </a>
+                    <a href="#about" title="Tentang">
+                        <i class="fas fa-info-circle nav-icon" aria-hidden="true"></i>
+                        <span class="sr-only">Tentang</span>
+                    </a>
+                    <a href="#contact" title="Kontak">
+                        <i class="fas fa-envelope nav-icon" aria-hidden="true"></i>
+                        <span class="sr-only">Kontak</span>
+                    </a>
                 </div>
                 <div class="nav-auth">
                     @auth
