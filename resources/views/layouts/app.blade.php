@@ -507,6 +507,44 @@
                 text-align: center;
             }
         }
+        .feed-header {
+    background: #f8f9fa; /* Warna terang bersih */
+    border-bottom: 2px solid #eee;
+    padding: 30px 0;
+    margin-bottom: 20px;
+}
+
+.feed-intro h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.feed-stats-mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.btn-post-shortcut {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-post-shortcut:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
     </style>
 </head>
 <body>
@@ -558,24 +596,21 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Platform <span class="highlight">Feed</span> Anak <span class="highlight">Unimus</span></h1>
-            
-            
-            <!-- Gambar hero dihapus sesuai permintaan -->
-        </div>
-    </section>
-
     
-    <!-- CTA Section -->
+   
+
+    <section class="hero" id="home">
+    <div class="container">
+        <h1>Platform <span class="highlight">sarkastik</span> Anak <span class="highlight">Unimus</span></h1>
+    </div>
+</section>
+
+@if(Request::is('/') || Request::is('home'))
     @guest
     <section class="cta-section">
         <div class="container">
             <h2>Mulai Eksplorasi Dunia Sarkalogi!</h2>
             <p>Jangan cuma jadi penonton, ceritakan semua pengalamanmu selama dikampus.</p>
-            
             <div class="cta-buttons">
                 <a href="{{ route('feed') }}" class="btn cta-btn">Lihat postingan Terpopuler</a>
                 <a href="{{ route('meme.create') }}" class="btn cta-btn">Upload Feed Pertamamu</a>
@@ -583,7 +618,16 @@
         </div>
     </section>
     @endguest
+@endif
 
+@if(Request::is('feed*'))
+    <section class="feed-header">
+        <div class="container">
+            <p>Apa yang menarik di kampus hari ini? Jangan cuma nyimak, yuk posting!</p>
+            
+        </div>
+    </section>
+@endif
 
     @yield('content')
 
