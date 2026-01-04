@@ -601,7 +601,7 @@
 
     <section class="hero" id="home">
     <div class="container">
-        <h1>Platform <span class="highlight">sarkastik</span> Anak <span class="highlight">Unimus</span></h1>
+        <h1>Ruang <span class="highlight">Ekspresi</span> Anak <span class="highlight">Unimus</span></h1>
     </div>
 </section>
 

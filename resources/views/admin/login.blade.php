@@ -6,43 +6,90 @@
     <title>Login Admin</title>
 
     <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-            padding: 0;
+                    body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2f6fe4, #f57c00);
             margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+
+
         .container {
-            width: 40%;
-            margin: 80px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 360px;
+            background: #ffffff;
+            padding: 32px 30px;
+            border-radius: 16px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+            box-sizing: border-box;
         }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #006ae1;
-        }
+
         .title {
             text-align: center;
-            font-size: 22px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.25s;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.18);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 22px;
+            background: linear-gradient(135deg, #007bff, #0056d2);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0,123,255,0.35);
+        }
+
+        .error {
+            background: #fdeaea;
+            color: #d93025;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -53,17 +100,23 @@
     <div class="title">Login Admin</div>
 
     @if(session('error'))
-        <p style="color:red; text-align:center;">{{ session('error') }}</p>
+        <div class="error">
+            {{ session('error') }}
+        </div>
     @endif
 
     <form action="/login" method="POST">
         @csrf
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Masukkan email" required>
+        </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Masukkan password" required>
+        </div>
 
         <button type="submit">Login</button>
     </form>
