@@ -68,12 +68,12 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         // LOGIKA REDIRECT:
-        // Jika admin ke dashboard admin, jika user biasa ke profile dashboard
+        // Jika admin ke dashboard admin, jika user biasa ke home
         if (Auth::user()->role === 'admin') {
             return redirect()->route('admin.dashboard')->with('success', 'Halo Admin!');
         }
 
-        return redirect()->route('profile.dashboard')->with('success', 'Selamat datang kembali!');
+        return redirect()->route('home')->with('success', 'Selamat datang kembali!');
     }
 
     return back()->withErrors([

@@ -11,7 +11,14 @@ use App\Http\Controllers\ProfileController;
 
 
 // === ROUTE HALAMAN UTAMA ===
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('home');
+    }
+    return view('auth.welcome');
+})->name('welcome');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // === HALAMAN TENTANG ===
 Route::get('/about', function () {
