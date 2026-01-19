@@ -666,9 +666,9 @@
                 
                 <div class="footer-section">
                     <h3>Kontak</h3>
-                    <p><i class="fas fa-university"></i> universitas Muhammadiyah Semarang</p>
+                    <p><i class="fas fa-university"></i> Kelompok 5 Pemrograman Web</p>
                     <p><i class="fas fa-envelope"></i> sarkalogi@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +62 821-3697-7881 </p>
+                    <p><i class="fas fa-phone"></i> +62 888-888-8888 </p>
                 </div>
             </div>
             

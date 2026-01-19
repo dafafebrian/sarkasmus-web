@@ -30,6 +30,11 @@
                     required
                     autofocus
                 >
+                
+                <small style="color: red !important; display: block; margin-top: 4px; font-size: 0.85rem;">
+                    *Jangan gunakan nama asli
+                </small>
+
                 @error('name')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
