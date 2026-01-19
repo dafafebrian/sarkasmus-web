@@ -3,8 +3,11 @@
 @section('title', 'Tentang - Sarkalogi')
 
 @section('content')
-<div class="container">
-    <h1>Tentang Sarkalogi</h1>
-    <p>Website anonim berisi postingan lucu, dan keluh kesah seputar kampus tanpa konten SARA dan RASIS.</p>
+<div class="container py-5">
+    <h1 class="fw-bold mb-3">Tentang Sarkalogi</h1>
+    <p class="text-muted">
+        Website anonim berisi postingan lucu dan keluh kesah seputar kampus,
+        tanpa konten SARA dan rasis.
+    </p>
 </div>
 @endsection
