@@ -47,7 +47,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input 
                     type="password" 
@@ -56,10 +56,32 @@
                     class="form-control @error('password') is-invalid @enderror"
                     required
                 >
+                
+                <div class="d-flex justify-content-end mt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="togglePassword" style="cursor: pointer;">
+                        <label class="form-check-label text-muted" for="togglePassword" style="font-size: 0.9rem; cursor: pointer; user-select: none;">
+                            Lihat Password
+                        </label>
+                    </div>
+                </div>
+
                 @error('password')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    const togglePassword = document.querySelector('#togglePassword');
+                    const password = document.querySelector('#password');
+
+                    togglePassword.addEventListener('click', function (e) {
+                        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password.setAttribute('type', type);
+                    });
+                });
+            </script>
 
             <div class="form-group">
                 <label class="form-checkbox">
