@@ -14,59 +14,67 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 0;
         }
 
         .welcome-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1000px;
+            display: flex;
+            flex-direction: row;
+            gap: 48px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(26, 115, 232, 0.08);
+            max-width: 800px;
             width: 100%;
+            padding: 48px 32px;
         }
 
-        /* Left Side - Logo & Description */
+    
         .logo-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
+            border-right: 1px solid #e5e7eb;
+            padding-right: 32px;
         }
 
         .logo-display {
-            width: 200px;
-            height: 200px;
+            width: 120px;
+            height: 120px;
             background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
-            border-radius: 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(255, 107, 0, 0.3);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(255, 107, 0, 0.12);
         }
 
         .logo-icon {
-            font-size: 100px;
+            font-size: 64px;
             color: white;
         }
 
         .logo-section h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
-            color: #202124;
-            margin-bottom: 15px;
+            color: #ff6b00;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
 
         .logo-section p {
-            font-size: 15px;
+            font-size: 14px;
             color: #5f6368;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 0;
+            text-align: center;
         }
 
         /* Right Side - Login Options */
@@ -74,51 +82,55 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            width: 100%;
         }
 
         .login-section h2 {
-            font-size: 32px;
+            font-size: 22px;
             font-weight: 700;
-            color: #202124;
-            margin-bottom: 10px;
+            color: #1a73e8;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
         .login-section > p {
-            font-size: 15px;
+            font-size: 14px;
             color: #5f6368;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
         }
 
         .login-options {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 18px;
+            width: 100%;
         }
 
         .login-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            padding: 15px 30px;
+            gap: 10px;
+            padding: 12px 0;
             border: 2px solid #1a73e8;
-            border-radius: 50px;
+            border-radius: 8px;
             background: white;
             color: #1a73e8;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             text-decoration: none;
-            display: flex;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(26, 115, 232, 0.04);
         }
 
         .login-btn:hover {
             background: #1a73e8;
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(26, 115, 232, 0.3);
+            box-shadow: 0 4px 16px rgba(26, 115, 232, 0.10);
         }
 
         .login-btn.admin {
@@ -135,9 +147,10 @@
         .divider {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 18px 0;
             color: #bdc1c6;
+            font-size: 13px;
         }
 
         .divider::before,
@@ -150,7 +163,7 @@
 
         .register-link {
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             color: #5f6368;
         }
 
@@ -167,36 +180,33 @@
         /* Responsive */
         @media (max-width: 768px) {
             .welcome-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
+                flex-direction: column;
+                gap: 24px;
+                padding: 32px 12px;
             }
-
             .logo-section {
+                border-right: none;
+                padding-right: 0;
                 align-items: center;
                 text-align: center;
             }
-
             .logo-section h1 {
-                font-size: 28px;
+                font-size: 22px;
             }
-
+            .logo-display {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 16px;
+            }
+            .logo-icon {
+                font-size: 40px;
+            }
             .login-section {
                 align-items: center;
                 text-align: center;
             }
-
             .login-section h2 {
-                font-size: 28px;
-            }
-
-            .logo-display {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 30px;
-            }
-
-            .logo-icon {
-                font-size: 75px;
+                font-size: 18px;
             }
         }
     </style>
@@ -220,11 +230,7 @@
             <div class="login-options">
                 <a href="{{ route('login') }}" class="login-btn member">
                     <i class="fas fa-user"></i>
-                    Login Sebagai Member
-                </a>
-                <a href="{{ route('admin.login') }}" class="login-btn admin">
-                    <i class="fas fa-lock"></i>
-                    Login Sebagai Admin
+                    Login
                 </a>
             </div>
 

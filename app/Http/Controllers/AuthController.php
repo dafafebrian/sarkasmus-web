@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Show login form untuk user biasa
-     */
+    
     public function showLogin()
     {
         if (Auth::check()) {
@@ -20,9 +18,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Show register form untuk user biasa
-     */
+    
     public function showRegister()
     {
         if (Auth::check()) {
@@ -31,9 +27,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    /**
-     * Handle user registration
-     */
+    
     public function register(Request $request)
     {
         $request->validate([
@@ -52,9 +46,7 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
-    /**
-     * Handle user login
-     */
+    
     public function login(Request $request)
 {
     $request->validate([

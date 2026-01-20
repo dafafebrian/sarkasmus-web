@@ -5,7 +5,7 @@ public function feed(Request $request)
     } elseif ($request->sort == 'random') {
         $posts = Post::inRandomOrder()->get();
     } else { 
-        // default HOT
+        
         $posts = Post::orderBy('likes', 'desc')->get();
     }
 

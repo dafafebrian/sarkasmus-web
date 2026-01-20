@@ -5,10 +5,6 @@
     <nav style="margin-bottom:30px;display:flex;gap:16px;align-items:center;">
         <a href="{{ route('admin.dashboard') }}" style="font-weight:600;color:#1a73e8;text-decoration:none;">Dashboard</a>
         <a href="/" style="font-weight:600;color:#333;text-decoration:none;">Halaman Utama</a>
-        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-            @csrf
-            <button type="submit" style="background:#dc3545;color:#fff;padding:6px 16px;border:none;border-radius:4px;cursor:pointer;">Logout</button>
-        </form>
     </nav>
     <h1>Dashboard Admin</h1>
     <p>Daftar postingan yang menunggu persetujuan:</p>

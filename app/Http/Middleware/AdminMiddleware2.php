@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminMiddleware2 // Nama harus sama dengan nama file
+class AdminMiddleware2
 {
     public function handle(Request $request, Closure $next)
     {

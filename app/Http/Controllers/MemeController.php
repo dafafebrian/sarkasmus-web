@@ -12,7 +12,7 @@ class MemeController extends Controller
 {
     public function __construct()
     {
-        // Allow anonymous posting; only protect destructive actions
+        
         $this->middleware('auth', ['only' => ['deleteComment', 'destroy']]);
     }
 
@@ -43,7 +43,7 @@ class MemeController extends Controller
             'anonymous_name' => 'nullable|string|max:50',
         ]);
 
-        // At least caption or image is required
+        
         if (!$request->caption && !$request->file('image')) {
             return back()->withErrors(['content' => 'Tulisan atau gambar harus diisi!']);
         }
@@ -82,13 +82,13 @@ class MemeController extends Controller
 
     public function toggleLike(Request $request, Meme $meme)
     {
-        // Toggle like. Support anonymous likes by storing null user_id.
+        
         $userId = Auth::check() ? Auth::id() : null;
 
         if ($userId) {
             $like = Like::where('meme_id', $meme->id)->where('user_id', $userId)->first();
         } else {
-            // For anonymous, pick any like with null user_id (simple toggle)
+            
             $like = Like::where('meme_id', $meme->id)->whereNull('user_id')->first();
         }
 
@@ -106,7 +106,7 @@ class MemeController extends Controller
             $liked = true;
         }
 
-        // Return JSON for AJAX clients
+        
         if ($request->expectsJson() || $request->ajax()) {
             return response()->json([
                 'likes_count' => $meme->likes_count,

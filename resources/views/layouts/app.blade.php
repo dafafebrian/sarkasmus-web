@@ -129,6 +129,60 @@
         }
 
         .user-menu {
+                    .dropdown-menu-wrapper {
+                        position: relative;
+                    }
+                    #dropdown-menu {
+                        display: none;
+                        position: absolute;
+                        right: 0;
+                        top: 40px;
+                        background: #fff;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+                        border-radius: 16px;
+                        min-width: 200px;
+                        z-index: 999;
+                        padding: 10px 0;
+                        opacity: 0;
+                        transform: translateY(-10px);
+                        transition: opacity 0.25s, transform 0.25s;
+                    }
+                    #dropdown-menu[style*="display: block"] {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    #dropdown-menu ul {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    #dropdown-menu li {
+                        padding: 0;
+                    }
+                    #dropdown-menu a,
+                    #dropdown-menu button {
+                        display: block;
+                        width: 100%;
+                        background: none;
+                        border: none;
+                        color: #333;
+                        text-align: left;
+                        padding: 12px 24px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        border-radius: 8px;
+                        transition: background 0.18s, color 0.18s;
+                    }
+                    #dropdown-menu a:hover,
+                    #dropdown-menu button:hover {
+                        background: #f2f6fa;
+                        color: #1a73e8;
+                    }
+                    #menu-toggle {
+                        transition: background 0.18s;
+                    }
+                    #menu-toggle:hover {
+                        background: #f2f6fa;
+                    }
             display: flex;
             align-items: center;
             gap: 12px;
@@ -158,6 +212,25 @@
 
         .btn-logout:hover {
             background-color: #c82333;
+        }
+
+        .btn-admin-link {
+            background-color: transparent;
+            color: var(--gray);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-admin-link:hover {
+            background-color: rgba(26,115,232,0.06);
+            color: var(--primary);
         }
 
         .btn-primary-nav {
@@ -497,8 +570,22 @@
                 width: 100%;
             }
 
+            .user-menu > div {
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .user-menu > div form {
+                width: 100%;
+            }
+
             .btn-logout {
                 width: 100%;
+            }
+
+            .btn-admin-link {
+                width: 100%;
+                text-align: center;
             }
 
             .btn-primary-nav,
@@ -549,6 +636,7 @@
 </head>
 <body>
     <!-- Header -->
+    @if(!Request::is('login'))
     <header>
         <div class="container">
             <nav class="navbar">
@@ -565,7 +653,7 @@
                         <i class="fas fa-newspaper nav-icon" aria-hidden="true"></i>
                         <span class="sr-only">Feed</span>
                     </a>
-                    <a href="#about" title="Tentang">
+                    <a href="{{ route('tentang') }}" title="Tentang">
                         <i class="fas fa-info-circle nav-icon" aria-hidden="true"></i>
                         <span class="sr-only">Tentang</span>
                     </a>
@@ -575,26 +663,42 @@
                     </a>
                 </div>
                 <div class="nav-auth">
-                    @auth
-                        <div class="user-menu">
-                            <span class="user-name">{{ Auth::user()->name }}</span>
-                            @if(Auth::user()->role === 'admin')
-                                <a href="{{ route('admin.dashboard') }}" class="btn-outline-nav">Dashboard Admin</a>
-                            @else
-                                <a href="{{ route('profile.dashboard') }}" class="btn-outline-nav">Profil Saya</a>
-                            @endif
-                            <form action="{{ route('logout') }}" method="POST" class="logout-form">
-                                @csrf
-                                <button type="submit" class="btn-logout">Logout</button>
-                            </form>
+                    <div class="user-menu">
+                        <span class="user-name">{{ Auth::user()->name ?? 'Guest' }}</span>
+                        <div class="dropdown-menu-wrapper" style="position:relative;">
+                            <button id="menu-toggle" style="background:transparent;border:none;cursor:pointer;padding:8px 12px;border-radius:8px;">
+                                <span style="font-size:22px;color:#5f6368;">&#x25A9;</span>
+                            </button>
+                            <div id="dropdown-menu" style="display:none;position:absolute;right:0;top:40px;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.12);border-radius:12px;min-width:180px;z-index:999;">
+                                <ul style="list-style:none;padding:12px 0;margin:0;">
+                                    @if(Auth::check() && Auth::user()->role === 'admin')
+                                        <li><a href="{{ route('admin.dashboard') }}" class="btn-admin-link" style="width:100%;text-align:left;">&#9881; Dashboard Admin</a></li>
+                                    @elseif(Auth::check())
+                                        <li><a href="{{ route('profile.dashboard') }}" class="btn-outline-nav" style="width:100%;text-align:left;">&#128100; Profil Saya</a></li>
+                                    @endif
+                                    @if(Auth::check())
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST" class="logout-form" style="margin:0;">
+                                            @csrf
+                                            <button type="submit" class="btn-logout" style="width:100%;text-align:left;">&#x1F6AA; Logout</button>
+                                        </form>
+                                    </li>
+                                    @endif
+                                    <li>
+                                            <!-- Dark mode toggle removed by request -->
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    @else
+                    </div>
+                    @if(!Auth::check())
                         <a href="{{ route('login') }}" class="btn-primary-nav">Login</a>
-                    @endauth
+                    @endif
                 </div>
             </nav>
         </div>
     </header>
+    @endif
 
     
    
@@ -631,7 +735,6 @@
 
     @yield('content')
 
-    <!-- ...login-section dihapus sesuai permintaan... -->
 
     <!-- Footer -->
     <footer id="contact">
@@ -675,23 +778,35 @@
           
         </div>
     </footer>
+    <!-- ...existing code... -->
+</footer>
     <script>
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const dropdownThemeToggle = document.getElementById('dropdown-theme-toggle');
+            const dropdownThemeIcon = document.getElementById('dropdown-theme-icon');
+
+            // Debug: log element existence
+            console.log('menuToggle:', menuToggle);
+            console.log('dropdownMenu:', dropdownMenu);
+
+            // Dropdown open/close logic
+            if (menuToggle && dropdownMenu) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+                });
+                document.addEventListener('click', function(e) {
+                    if (dropdownMenu.style.display === 'block' && !dropdownMenu.contains(e.target) && e.target !== menuToggle) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                });
+            }
+
+            // Dark mode toggle removed by request
         });
+    </script>
     </script>
 </body>
 </html>

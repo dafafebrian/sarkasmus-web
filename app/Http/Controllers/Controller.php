@@ -6,5 +6,5 @@ use Illuminate\Routing\Controller as BaseController;
 
 abstract class Controller extends BaseController
 {
-    // Base controller for application controllers
+
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Meme; // Tambahkan ini agar bisa memanggil tabel Meme
+use App\Models\Meme;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -27,7 +27,7 @@ class HomeController extends Controller
             return view('meme.partials.list', compact('memes'));
         }
 
-        // Kirim data memes ke view home
+        
         return view('home', compact('memes', 'sort'));
     }
 }
