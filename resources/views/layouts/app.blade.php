@@ -754,17 +754,17 @@
                 <div class="footer-section">
                     <h3>Tautan Cepat</h3>
                     <a href="{{ route('home') }}">Beranda</a>
-                    <a href="#features">Fitur</a>
+                    <a href="{{ route('fitur') }}">Fitur</a>
                     <a href="{{ route('feed') }}">Post Terbaru</a>
                     <a href="{{ route('login') }}">Login</a>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Legal</h3>
-                    <a href="#">Syarat & Ketentuan</a>
-                    <a href="#">Kebijakan Privasi</a>
-                    <a href="#">Pedoman Komunitas</a>
-                    <a href="#">FAQ</a>
+                    <a href="{{ route('legal.terms') }}">Syarat & Ketentuan</a>
+                    <a href="{{ route('legal.privacy') }}">Kebijakan Privasi</a>
+                    <a href="{{ route('legal.community') }}">Pedoman Komunitas</a>
+                    <a href="{{ route('legal.faq') }}">FAQ</a>
                 </div>
                 
                 <div class="footer-section">

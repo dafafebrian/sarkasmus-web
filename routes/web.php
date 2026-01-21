@@ -25,6 +25,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('tentang');
 
+// === HALAMAN FITUR ===
+Route::view('/fitur', 'fitur')->name('fitur');
+
 // === HALAMAN ANALISIS ===
 Route::get('/analyze', function () {
     return view('analyze');
@@ -37,6 +40,12 @@ Route::get('/post', function () {
 
 // === FEED POSTINGAN ===
 Route::get('/feed', [MemeController::class, 'index'])->name('feed');
+
+// === LEGAL PAGES ===
+Route::view('/legal/syarat-ketentuan', 'legal.terms')->name('legal.terms');
+Route::view('/legal/kebijakan-privasi', 'legal.privacy')->name('legal.privacy');
+Route::view('/legal/pedoman-komunitas', 'legal.community')->name('legal.community');
+Route::view('/legal/faq', 'legal.faq')->name('legal.faq');
 
 // === MEME ROUTES ===
 Route::middleware('auth')->group(function () {
