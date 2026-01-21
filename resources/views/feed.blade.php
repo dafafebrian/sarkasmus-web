@@ -35,27 +35,24 @@
 
         @foreach($posts as $post)
             <div class="post-card">
-
                 <div class="from">From: {{ $post->from }}</div>
-
+                @if($post->image_path)
+                    <img src="{{ asset('storage/' . $post->image_path) }}" alt="Meme" style="max-width:100%;max-height:300px;display:block;margin:auto;">
+                @endif
                 <div class="caption">{{ $post->caption }}</div>
-
                 <div class="content-placeholder">
                     {{ $post->content }}
                 </div>
-
                 <div class="actions">
                     <div class="left-actions">
                         <i class="fas fa-thumbs-up"></i><span>{{ $post->likes }}</span>
                         <i class="fas fa-comment-alt"></i>
                         <i class="fas fa-share-alt"></i>
                     </div>
-
                     <div class="time">
                         {{ $post->created_at->format('H:i') }}
                     </div>
                 </div>
-
             </div>
         @endforeach
     </div>
