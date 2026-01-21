@@ -9,9 +9,15 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        // Hanya tampilkan meme yang statusnya pending
-        $memes = Meme::with('user')->where('status', 'pending')->latest()->paginate(10);
+        // Tampilkan semua meme yang statusnya pending atau approved
+        $memes = Meme::with('user')->whereIn('status', ['pending', 'approved'])->latest()->paginate(10);
         return view('admin.dashboard', compact('memes'));
+    }
+    public function destroy($id)
+    {
+        $meme = Meme::findOrFail($id);
+        $meme->delete();
+        return back()->with('success', 'Postingan berhasil dihapus!');
     }
 
     public function approve($id)

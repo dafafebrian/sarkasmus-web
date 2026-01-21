@@ -33,14 +33,23 @@
                         @endif
                     </td>
                     <td style="padding:8px;border:1px solid #ddd;">
-                        <form action="{{ route('admin.meme.approve', $meme->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            <button type="submit" class="btn btn-success">ACC</button>
-                        </form>
-                        <form action="{{ route('admin.meme.reject', $meme->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Tolak</button>
-                        </form>
+                        @if($meme->status === 'pending')
+                            <form action="{{ route('admin.meme.approve', $meme->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-success">ACC</button>
+                            </form>
+                            <form action="{{ route('admin.meme.reject', $meme->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Tolak</button>
+                            </form>
+                        @endif
+                        @if($meme->status === 'approved')
+                            <form action="{{ route('admin.meme.destroy', $meme->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Yakin ingin menghapus postingan ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @empty

@@ -89,4 +89,5 @@ Route::middleware(\App\Http\Middleware\AdminMiddleware2::class)->prefix('admin')
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::post('/meme/{id}/approve', [AdminDashboardController::class, 'approve'])->name('admin.meme.approve');
     Route::post('/meme/{id}/reject', [AdminDashboardController::class, 'reject'])->name('admin.meme.reject');
+    Route::delete('/meme/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.meme.destroy');
 });
