@@ -744,10 +744,7 @@
                     <h3>Aplikasi Sarkalogi</h3>
                     <p>Platform komunitas humor dan keluh kesah untuk mahasiswa Universitas Muhammadiyah Semarang. Dibuat untuk menyebarkan kegembiraan dan kreativitas di lingkungan kampus.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <!-- Social icons removed as requested -->
                     </div>
                 </div>
                 
@@ -771,7 +768,7 @@
                     <h3>Kontak</h3>
                     <p><i class="fas fa-university"></i> Kelompok 5 Pemrograman Web</p>
                     <p><i class="fas fa-envelope"></i> sarkalogi@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +62 888-888-8888 </p>
+                    <p><i class="fas fa-phone"></i> +62 857-1129-4539 </p>
                 </div>
             </div>
             
